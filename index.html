@@ -1,1 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>펫블리 petbly - 우리 아이 맞춤 반려동물 쇼핑몰</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <!-- 1. 상단: 로고 + 유틸 메뉴 -->
+  <div class="top-bar">
+    <div class="inner">
+      <h1><a href="index.html" class="logo img-box">petbly 펫블리</a></h1>
+      <ul class="util-menu">
+        <li><a href="login.html">로그인</a></li>
+        <li><a href="join.html">회원가입</a></li>
+        <li><a href="guestbook.html">방명록</a></li>
+        <li><a href="cart.html">장바구니</a></li>
+        <li><a href="mypage.html">마이페이지</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. 내비게이션 + 검색 -->
+  <nav class="gnb-wrap">
+    <div class="inner">
+      <ul class="gnb">
+        <li><a href="about.html">브랜드 소개</a></li>
+        <li><a href="dogshop.html">강아지 샵</a></li>
+        <li><a href="catshop.html">고양이 샵</a></li>
+        <li><a href="subscribe.html">정기배송</a></li>
+        <li><a href="review.html">상품 리뷰</a></li>
+        <li><a href="event.html">이벤트</a></li>
+        <li><a href="support.html">고객센터</a></li>
+      </ul>
+      <form class="search" onsubmit="event.preventDefault(); alert('검색 기능은 준비 중입니다.');">
+        <input type="text" placeholder="검색어를 입력하세요">
+        <button type="submit" aria-label="검색">🔍</button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- 3. 메인 배너 슬라이드 -->
+  <section class="slider">
+    <div class="slides">
+      <div class="slide img-box">메인 배너 이미지 1<small>신상품 소개</small></div>
+      <div class="slide img-box">메인 배너 이미지 2<small>기획전</small></div>
+      <div class="slide img-box">메인 배너 이미지 3<small>이벤트</small></div>
+    </div>
+    <button class="slider-btn prev" aria-label="이전">‹</button>
+    <button class="slider-btn next" aria-label="다음">›</button>
+    <div class="dots"></div>
+  </section>
+
+  <main class="inner">
+
+    <!-- 4. 우리 아이 맞춤 추천 -->
+    <section class="section">
+      <div class="sec-head">
+        <h2>우리 아이 맞춤 추천 <small>마이펫 정보(종·나이·체중)에 맞는 상품을 추천해 드려요</small></h2>
+      </div>
+      <div class="mypet-box">
+        <div class="mypet-left">
+          <div class="img-box">마이펫 사진</div>
+          <p>마이펫을 등록하면<br>우리 아이에게 맞는 상품을 추천해 드려요</p>
+          <a href="join.html" class="btn-main">마이펫 등록하기</a>
+        </div>
+        <div class="mypet-right">
+          <p class="guide">마이펫 등록 후 : 초코 (말티즈 · 8살 · 3.2kg) 에게 추천하는 상품</p>
+          <div class="grid-4">
+            <a href="detail.html" class="product"><div class="img-box">추천 상품</div><p class="name">시니어 소형견 사료 2kg</p><p class="price">32,000원</p></a>
+            <a href="detail.html" class="product"><div class="img-box">추천 상품</div><p class="name">관절 영양 간식</p><p class="price">15,900원</p></a>
+            <a href="detail.html" class="product"><div class="img-box">추천 상품</div><p class="name">저자극 배변패드 100매</p><p class="price">18,500원</p></a>
+            <a href="detail.html" class="product"><div class="img-box">추천 상품</div><p class="name">노령견 메모리폼 방석</p><p class="price">39,000원</p></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 베스트 셀러 TOP 5 -->
+    <section class="section best">
+      <div class="sec-head">
+        <h2>베스트 셀러 <small>전체 상품 중 가장 많이 팔린 상품 TOP 5</small></h2>
+        <a href="dogshop.html" class="more">더보기 +</a>
+      </div>
+      <div class="grid-5">
+        <a href="detail.html" class="product"><span class="rank">1</span><div class="img-box">상품 이미지</div><p class="name">그레인프리 강아지 사료 6kg</p><p class="price">54,000원</p><p class="star">★ 4.9 (리뷰 1,204)</p></a>
+        <a href="detail.html" class="product"><span class="rank">2</span><div class="img-box">상품 이미지</div><p class="name">벤토나이트 고양이 모래 10L</p><p class="price">12,900원</p><p class="star">★ 4.8 (리뷰 986)</p></a>
+        <a href="detail.html" class="product"><span class="rank">3</span><div class="img-box">상품 이미지</div><p class="name">대형 배변패드 100매</p><p class="price">19,800원</p><p class="star">★ 4.8 (리뷰 875)</p></a>
+        <a href="detail.html" class="product"><span class="rank">4</span><div class="img-box">상품 이미지</div><p class="name">츄르 참치맛 20개입</p><p class="price">11,500원</p><p class="star">★ 4.9 (리뷰 742)</p></a>
+        <a href="detail.html" class="product"><span class="rank">5</span><div class="img-box">상품 이미지</div><p class="name">원목 스크래쳐 캣타워</p><p class="price">89,000원</p><p class="star">★ 4.7 (리뷰 431)</p></a>
+      </div>
+    </section>
+
+    <!-- 6. 정기배송 띠배너 -->
+    <section class="sub-banner">
+      <div class="left">
+        <div class="img-box">이미지</div>
+        <div>
+          <h3>사료 · 모래 · 배변패드, 이제 정기배송으로</h3>
+          <p>원하는 주기(2주·4주·8주)로 자동 배송 · 정기배송 시 최대 10% 할인</p>
+        </div>
+      </div>
+      <a href="subscribe.html" class="btn-main">정기배송 신청하기</a>
+    </section>
+  </main>
+
+  <!-- 7. 맞춤 케어 가이드 -->
+  <section class="care">
+    <div class="inner">
+      <div class="sec-head">
+        <h2>맞춤 케어 가이드 <small>시기별로 필요한 사료와 용품</small></h2>
+        <a href="about.html" class="more">전체 가이드 보기 +</a>
+      </div>
+      <div class="tabs">
+        <button class="active" data-tab="0">퍼피·키튼</button>
+        <button data-tab="1">어덜트</button>
+        <button data-tab="2">시니어</button>
+        <button data-tab="3">초보 보호자</button>
+      </div>
+      <div class="care-body">
+        <div class="img-box">가이드 대표 이미지</div>
+        <div class="care-text">
+          <h3 id="careTitle"></h3>
+          <p id="careDesc"></p>
+          <h4>이 시기 추천 용품</h4>
+          <div class="care-items" id="careItems"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="inner">
+    <!-- 8. 포토 리뷰 -->
+    <section class="section review">
+      <div class="sec-head">
+        <h2>포토 리뷰 <small>실제 보호자들의 사용 후기</small></h2>
+        <a href="review.html" class="more">리뷰 더보기 +</a>
+      </div>
+      <div class="grid-5">
+        <div><div class="img-box">리뷰 사진</div><p class="meta">★★★★★ · 포메라니안 3살</p><p class="text">기호성이 좋아서 잘 먹어요!</p></div>
+        <div><div class="img-box">리뷰 사진</div><p class="meta">★★★★★ · 코리안숏헤어 1살</p><p class="text">먼지가 적고 응고력이 좋아요.</p></div>
+        <div><div class="img-box">리뷰 사진</div><p class="meta">★★★★☆ · 푸들 10살</p><p class="text">노견인데 관절 간식 잘 먹어요.</p></div>
+        <div><div class="img-box">리뷰 사진</div><p class="meta">★★★★★ · 러시안블루 5살</p><p class="text">스크래쳐 튼튼하고 예뻐요.</p></div>
+        <div><div class="img-box">리뷰 사진</div><p class="meta">★★★★★ · 비숑 2살</p><p class="text">정기배송으로 편하게 받아요.</p></div>
+      </div>
+    </section>
+
+    <!-- 9. 진행중인 이벤트 + 방명록 -->
+    <section class="section event-guest">
+      <div>
+        <div class="sec-head">
+          <h2>진행중인 이벤트</h2>
+          <a href="event.html" class="more">더보기 +</a>
+        </div>
+        <a href="event.html"><div class="img-box event-img">이벤트 배너 이미지</div></a>
+      </div>
+      <div>
+        <div class="sec-head">
+          <h2>방명록 <small>펫블리에 남겨주신 이야기</small></h2>
+          <a href="guestbook.html" class="more">방명록 쓰기 +</a>
+        </div>
+        <ul class="guest-preview" id="guestPreview"></ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 10. 푸터 -->
+  <footer>
+    <div class="inner">
+      <div>
+        <ul class="foot-menu">
+          <li><a href="support.html">공지사항</a></li>
+          <li><a href="support.html">자주 하는 질문</a></li>
+          <li><a href="support.html">1:1 문의</a></li>
+          <li><a href="about.html">함께하는 나눔</a></li>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+        </ul>
+        <p class="foot-info">
+          상호명 펫블리(petbly) · 대표 000 · 사업자등록번호 000-00-00000<br>
+          주소 00시 00구 00로 00 · 이메일 help@petbly.com<br>
+          © petbly. All rights reserved.
+        </p>
+      </div>
+      <div class="cs">
+        고객센터<strong>1588-0000</strong>평일 10:00 ~ 18:00 (점심 12:00 ~ 13:00)
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== 메인 배너 슬라이드 =====
+    const slides = document.querySelector('.slides');
+    const count = document.querySelectorAll('.slide').length;
+    const dots = document.querySelector('.dots');
+    let current = 0;
+
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement('button');
+      dot.setAttribute('aria-label', (i + 1) + '번 배너');
+      dot.addEventListener('click', () => { goTo(i); restart(); });
+      dots.appendChild(dot);
+    }
+
+    function goTo(n) {
+      current = (n + count) % count;
+      slides.style.transform = `translateX(-${current * 100}%)`;
+      dots.querySelectorAll('button').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    let timer = setInterval(() => goTo(current + 1), 4000);
+    function restart() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 4000); }
+
+    document.querySelector('.prev').addEventListener('click', () => { goTo(current - 1); restart(); });
+    document.querySelector('.next').addEventListener('click', () => { goTo(current + 1); restart(); });
+    goTo(0);
+
+    // ===== 맞춤 케어 가이드 탭 =====
+    const guides = [
+      { title: '퍼피·키튼 (0~1살)', desc: '빠르게 자라는 시기라 단백질과 칼슘이 충분한 성장기 전용 사료가 필요해요. 이갈이 시기에는 부드러운 치발기 장난감이 도움이 돼요.', items: ['성장기 사료', '치발기 장난감', '배변 훈련 패드'] },
+      { title: '어덜트 (1~7살)', desc: '활동량에 맞게 칼로리를 조절하고 체중을 관리하는 것이 중요해요. 산책과 놀이로 충분히 움직이게 해 주세요.', items: ['체중 관리 사료', '산책 하네스', '노즈워크 장난감'] },
+      { title: '시니어 (7살 이상)', desc: '소화가 잘 되는 저칼로리 사료와 관절 건강을 위한 영양제를 챙겨 주세요. 푹신한 방석으로 관절 부담을 줄여 주세요.', items: ['시니어 사료', '관절 영양제', '메모리폼 방석'] },
+      { title: '초보 보호자 입문 가이드', desc: '처음 반려동물을 데려온다면 사료, 식기, 배변용품, 하우스부터 준비하세요. 펫블리의 입문 세트로 한 번에 준비할 수 있어요.', items: ['식기·급수기', '하우스', '입문 용품 세트'] }
+    ];
+    const tabButtons = document.querySelectorAll('.tabs button');
+
+    function showGuide(n) {
+      tabButtons.forEach((b, i) => b.classList.toggle('active', i === n));
+      document.getElementById('careTitle').textContent = guides[n].title;
+      document.getElementById('careDesc').textContent = guides[n].desc;
+      document.getElementById('careItems').innerHTML = guides[n].items.map(t => `<div class="img-box">${t}</div>`).join('');
+    }
+    tabButtons.forEach((b, i) => b.addEventListener('click', () => showGuide(i)));
+    showGuide(0);
+
+    // ===== 방명록 미리보기 (최근 3개) =====
+    const posts = JSON.parse(localStorage.getItem('petbly_guestbook') || '[]');
+    const preview = document.getElementById('guestPreview');
+
+    if (posts.length === 0) {
+      preview.innerHTML = '<li class="empty">첫 번째 방명록을 남겨주세요!</li>';
+    } else {
+      posts.slice(0, 3).forEach(p => {
+        const li = document.createElement('li');
+        li.innerHTML = '<a href="guestbook.html"><p class="who"></p><p class="msg"></p></a>';
+        li.querySelector('.who').textContent = p.name;
+        const date = document.createElement('span');
+        date.textContent = p.date;
+        li.querySelector('.who').appendChild(date);
+        li.querySelector('.msg').textContent = p.message;
+        preview.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

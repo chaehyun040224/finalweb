@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>방명록 | 펫블리 petbly</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 상단: 로고 + 유틸 메뉴 (메인과 동일) -->
+  <div class="top-bar">
+    <div class="inner">
+      <h1><a href="index.html" class="logo img-box">petbly 펫블리</a></h1>
+      <ul class="util-menu">
+        <li><a href="login.html">로그인</a></li>
+        <li><a href="join.html">회원가입</a></li>
+        <li><a href="guestbook.html">방명록</a></li>
+        <li><a href="cart.html">장바구니</a></li>
+        <li><a href="mypage.html">마이페이지</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 내비게이션 + 검색 (메인과 동일) -->
+  <nav class="gnb-wrap">
+    <div class="inner">
+      <ul class="gnb">
+        <li><a href="about.html">브랜드 소개</a></li>
+        <li><a href="dogshop.html">강아지 샵</a></li>
+        <li><a href="catshop.html">고양이 샵</a></li>
+        <li><a href="subscribe.html">정기배송</a></li>
+        <li><a href="review.html">상품 리뷰</a></li>
+        <li><a href="event.html">이벤트</a></li>
+        <li><a href="support.html">고객센터</a></li>
+      </ul>
+      <form class="search" onsubmit="event.preventDefault(); alert('검색 기능은 준비 중입니다.');">
+        <input type="text" placeholder="검색어를 입력하세요">
+        <button type="submit" aria-label="검색">🔍</button>
+      </form>
+    </div>
+  </nav>
+
+  <main class="inner">
+    <div class="page-title">
+      <h2>방명록</h2>
+      <p>펫블리에 우리 아이 이야기나 응원의 한마디를 남겨주세요</p>
+    </div>
+
+    <!-- 글쓰기 폼 -->
+    <form class="guest-form" id="guestForm">
+      <div class="row">
+        <input type="text" id="name" placeholder="이름" maxlength="10">
+        <input type="password" id="pw" placeholder="비밀번호 (삭제할 때 필요)" maxlength="10">
+      </div>
+      <textarea id="message" placeholder="내용을 입력하세요" maxlength="300"></textarea>
+      <p class="error" id="error"></p>
+      <div class="bottom">
+        <span class="count"><span id="count">0</span> / 300</span>
+        <button type="submit" class="btn-main">등록하기</button>
+      </div>
+    </form>
+
+    <!-- 글 목록 -->
+    <p class="total">전체 <b id="total">0</b>개</p>
+    <ul class="guest-list" id="guestList"></ul>
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div>
+        <ul class="foot-menu">
+          <li><a href="support.html">공지사항</a></li>
+          <li><a href="support.html">자주 하는 질문</a></li>
+          <li><a href="support.html">1:1 문의</a></li>
+          <li><a href="about.html">함께하는 나눔</a></li>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+        </ul>
+        <p class="foot-info">
+          상호명 펫블리(petbly) · 대표 000 · 사업자등록번호 000-00-00000<br>
+          주소 00시 00구 00로 00 · 이메일 help@petbly.com<br>
+          © petbly. All rights reserved.
+        </p>
+      </div>
+      <div class="cs">
+        고객센터<strong>1588-0000</strong>평일 10:00 ~ 18:00 (점심 12:00 ~ 13:00)
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const KEY = 'petbly_guestbook';   // 브라우저에 저장되는 이름
+    const form = document.getElementById('guestForm');
+    const list = document.getElementById('guestList');
+    const errorBox = document.getElementById('error');
+    const messageInput = document.getElementById('message');
+
+    // 저장된 글 불러오기 / 저장하기
+    function load() { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
+    function save(posts) { localStorage.setItem(KEY, JSON.stringify(posts)); }
+
+    // 오늘 날짜 (2026.11.16 14:30 형식)
+    function today() {
+      const d = new Date();
+      const p = n => String(n).padStart(2, '0');
+      return `${d.getFullYear()}.${p(d.getMonth() + 1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+    }
+
+    // 글 목록 화면에 그리기
+    function render() {
+      const posts = load();
+      document.getElementById('total').textContent = posts.length;
+      list.innerHTML = '';
+
+      if (posts.length === 0) {
+        list.innerHTML = '<li class="empty">아직 작성된 방명록이 없어요. 첫 글을 남겨주세요!</li>';
+        return;
+      }
+
+      posts.forEach(p => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div class="who"><div><b></b><span></span></div><button class="del">삭제</button></div>
+          <p class="msg"></p>`;
+        li.querySelector('b').textContent = p.name;          // textContent: 입력한 글자를 그대로 표시 (보안)
+        li.querySelector('span').textContent = p.date;
+        li.querySelector('.msg').textContent = p.message;
+        li.querySelector('.del').addEventListener('click', () => remove(p.id));
+        list.appendChild(li);
+      });
+    }
+
+    // 글 등록
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const pw = document.getElementById('pw').value;
+      const message = messageInput.value.trim();
+
+      if (!name) return showError('이름을 입력해 주세요.');
+      if (!pw) return showError('비밀번호를 입력해 주세요.');
+      if (!message) return showError('내용을 입력해 주세요.');
+
+      const posts = load();
+      posts.unshift({ id: Date.now(), name, pw, message, date: today() });   // 최신 글이 맨 위
+      save(posts);
+
+      form.reset();
+      document.getElementById('count').textContent = 0;
+      showError('');
+      render();
+    });
+
+    // 글 삭제 (비밀번호 확인)
+    function remove(id) {
+      const input = prompt('글을 쓸 때 입력한 비밀번호를 입력하세요.');
+      if (input === null) return;
+      const posts = load();
+      const target = posts.find(p => p.id === id);
+      if (target && target.pw === input) {
+        save(posts.filter(p => p.id !== id));
+        render();
+      } else {
+        alert('비밀번호가 맞지 않아요.');
+      }
+    }
+
+    function showError(text) { errorBox.textContent = text; }
+
+    // 글자 수 세기
+    messageInput.addEventListener('input', () => {
+      document.getElementById('count').textContent = messageInput.value.length;
+      showError('');
+    });
+
+    render();
+  </script>
+</body>
+</html>
