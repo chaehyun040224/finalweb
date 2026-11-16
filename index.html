@@ -25,7 +25,7 @@
         /* 방명록 영역 스타일 */
         #guestbook-section {
             max-width: 800px;
-            margin-top: 40px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -33,26 +33,12 @@
 
     <!-- 상단 네비게이션 메뉴 -->
     <nav>
-        <!-- GitHub 이슈 게시판 링크 -->
         <a href="https://github.com/chaehyun040224/finalweb/issues" target="_blank">이슈 게시판 이동</a> | 
-        <!-- 방명록 영역으로 이동하는 앵커 링크 -->
         <a href="#guestbook-section">방명록 이동</a>
     </nav>
 
-    <!-- 메인 콘텐츠 영역 -->
-    <main>
-        <h1>웹페이지 첫 화면입니다</h1>
-        <p>상단 메뉴를 통해 GitHub 이슈 게시판을 방문하거나, 아래로 스크롤하여 방명록을 남길 수 있습니다.</p>
-    </main>
-
-    <hr>
-
     <!-- giscus 방명록 영역 -->
     <section id="guestbook-section">
-        <h2>방명록</h2>
-        <p>GitHub 계정으로 로그인하여 댓글 및 방명록을 남겨보세요.</p>
-
-        <!-- ▼▼▼ 이 부분이 바로 giscus에서 복사해 넣어야 하는 script src 코드입니다 ▼▼▼ -->
         <script src="https://giscus.app/client.js"
                 data-repo="chaehyun040224/finalweb"
                 data-repo-id="[여기에_발급받은_REPO_ID_입력]"
@@ -68,7 +54,6 @@
                 crossorigin="anonymous"
                 async>
         </script>
-        <!-- ▲▲▲ script src 코드 끝 ▲▲▲ -->
     </section>
 
 </body>
