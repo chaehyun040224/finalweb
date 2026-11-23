@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장바구니 | 펫블리 petbly</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 상단: 로고 + 유틸 메뉴 (메인과 동일) -->
+  <div class="top-bar">
+    <div class="inner">
+      <h1><a href="index.html" class="logo img-box">petbly 펫블리</a></h1>
+      <ul class="util-menu">
+        <li><a href="login.html">로그인</a></li>
+        <li><a href="join.html">회원가입</a></li>
+        <li><a href="guestbook.html">방명록</a></li>
+        <li><a href="cart.html">장바구니</a></li>
+        <li><a href="mypage.html">마이페이지</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 내비게이션 + 검색 (메인과 동일) -->
+  <nav class="gnb-wrap">
+    <div class="inner">
+      <ul class="gnb">
+        <li><a href="about.html">브랜드 소개</a></li>
+        <li><a href="dogshop.html">강아지 샵</a></li>
+        <li><a href="catshop.html">고양이 샵</a></li>
+        <li><a href="subscribe.html">정기배송</a></li>
+        <li><a href="review.html">상품 리뷰</a></li>
+        <li><a href="event.html">이벤트</a></li>
+        <li><a href="support.html">고객센터</a></li>
+      </ul>
+      <form class="search" onsubmit="event.preventDefault(); alert('검색 기능은 준비 중입니다.');">
+        <input type="text" placeholder="검색어를 입력하세요">
+        <button type="submit" aria-label="검색">🔍</button>
+      </form>
+    </div>
+  </nav>
+
+  <main class="inner">
+    <div class="page-title">
+      <h2>장바구니</h2>
+      <p>30,000원 이상 구매하면 배송비가 무료예요</p>
+    </div>
+    <div id="cartArea"></div>
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div>
+        <ul class="foot-menu">
+          <li><a href="support.html">공지사항</a></li>
+          <li><a href="support.html">자주 하는 질문</a></li>
+          <li><a href="support.html">1:1 문의</a></li>
+          <li><a href="about.html">함께하는 나눔</a></li>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+        </ul>
+        <p class="foot-info">
+          상호명 펫블리(petbly) · 대표 000 · 사업자등록번호 000-00-00000<br>
+          주소 00시 00구 00로 00 · 이메일 help@petbly.com<br>
+          © petbly. All rights reserved.
+        </p>
+      </div>
+      <div class="cs">
+        고객센터<strong>1588-0000</strong>평일 10:00 ~ 18:00 (점심 12:00 ~ 13:00)
+      </div>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script>
+    const area = document.getElementById('cartArea');
+    const FREE = 30000, SHIP = 3000;   // 무료배송 기준, 배송비
+
+    function getCart() { return Store.get('petbly_cart', []); }
+    function setCart(cart) { Store.set('petbly_cart', cart); renderUtil(); render(); }
+
+    function render() {
+      const cart = getCart();
+
+      // 장바구니가 비었을 때
+      if (cart.length === 0) {
+        area.innerHTML = `
+          <div class="cart-empty">
+            <h3>장바구니가 비어 있어요</h3>
+            <p>마음에 드는 상품을 담아 보세요.</p>
+            <a href="index.html" class="btn-main">쇼핑 계속하기</a>
+          </div>`;
+        return;
+      }
+
+      const picked = cart.filter(i => i.checked);
+      const sum = picked.reduce((s, i) => s + i.price * i.qty, 0);
+      const ship = (sum === 0 || sum >= FREE) ? 0 : SHIP;
+
+      area.innerHTML = `
+        <div class="cart-wrap">
+          <div>
+            <table class="cart-table">
+              <thead><tr>
+                <th style="width:50px"><input type="checkbox" id="checkAll" ${picked.length === cart.length ? 'checked' : ''}></th>
+                <th>상품 정보</th><th style="width:140px">수량</th><th style="width:120px">상품 금액</th><th style="width:70px"></th>
+              </tr></thead>
+              <tbody id="rows"></tbody>
+            </table>
+            <div class="cart-tools">
+              <button id="delChecked">선택 상품 삭제</button>
+              <a href="index.html" class="more">쇼핑 계속하기</a>
+            </div>
+          </div>
+          <aside class="summary">
+            <h3>결제 예정 금액</h3>
+            <div class="line"><span>상품 금액 (${picked.length}개)</span><span>${won(sum)}</span></div>
+            <div class="line"><span>배송비</span><span>${ship ? won(ship) : '무료'}</span></div>
+            <div class="line total"><span>합계</span><b>${won(sum + ship)}</b></div>
+            <p class="free">${sum > 0 && sum < FREE ? won(FREE - sum) + ' 더 담으면 무료배송!' : '&nbsp;'}</p>
+            <button class="btn-full" id="orderBtn">주문하기</button>
+          </aside>
+        </div>`;
+
+      // 상품 줄 만들기
+      const rows = document.getElementById('rows');
+      cart.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input type="checkbox" class="pick" ${item.checked ? 'checked' : ''}></td>
+          <td class="item"><div class="img-box">상품 이미지</div><span class="nm"></span></td>
+          <td><div class="qty"><button class="minus">−</button><span>${item.qty}</span><button class="plus">+</button></div></td>
+          <td><b>${won(item.price * item.qty)}</b></td>
+          <td><button class="del">삭제</button></td>`;
+        tr.querySelector('.nm').textContent = item.name;
+        tr.querySelector('.pick').addEventListener('change', e => update(item.id, i => i.checked = e.target.checked));
+        tr.querySelector('.minus').addEventListener('click', () => update(item.id, i => { if (i.qty > 1) i.qty--; }));
+        tr.querySelector('.plus').addEventListener('click', () => update(item.id, i => { if (i.qty < 99) i.qty++; }));
+        tr.querySelector('.del').addEventListener('click', () => setCart(getCart().filter(i => i.id !== item.id)));
+        rows.appendChild(tr);
+      });
+
+      document.getElementById('checkAll').addEventListener('change', e =>
+        setCart(getCart().map(i => ({ ...i, checked: e.target.checked }))));
+
+      document.getElementById('delChecked').addEventListener('click', () => {
+        if (picked.length === 0) return alert('삭제할 상품을 선택해 주세요.');
+        if (confirm('선택한 상품 ' + picked.length + '개를 삭제할까요?')) setCart(getCart().filter(i => !i.checked));
+      });
+
+      document.getElementById('orderBtn').addEventListener('click', () => order(picked, sum + ship));
+    }
+
+    // 상품 하나의 정보 바꾸기
+    function update(id, change) {
+      const cart = getCart();
+      change(cart.find(i => i.id === id));
+      setCart(cart);
+    }
+
+    // 주문하기
+    function order(picked, total) {
+      if (picked.length === 0) return alert('주문할 상품을 선택해 주세요.');
+
+      const user = currentUser();
+      if (!user) {
+        if (confirm('주문하려면 로그인이 필요해요. 로그인 페이지로 이동할까요?')) location.href = 'login.html?next=cart.html';
+        return;
+      }
+
+      // 주문 내역 저장 (마이페이지에서 사용할 수 있어요)
+      const orderNo = 'PB' + Date.now().toString().slice(-8);
+      const orders = Store.get('petbly_orders', []);
+      orders.unshift({ no: orderNo, userId: user.id, items: picked, total: total, date: new Date().toLocaleDateString('ko-KR') });
+      Store.set('petbly_orders', orders);
+
+      // 주문한 상품은 장바구니에서 빼기
+      Store.set('petbly_cart', getCart().filter(i => !i.checked));
+      renderUtil();
+
+      area.innerHTML = `
+        <div class="order-done">
+          <h3>주문이 완료됐어요</h3>
+          <p><b class="who"></b>님, 펫블리를 이용해 주셔서 감사해요.<br>결제 금액 <b>${won(total)}</b></p>
+          <div class="num">주문번호 ${orderNo}</div><br>
+          <a href="index.html" class="btn-main">메인으로 가기</a>
+        </div>`;
+      area.querySelector('.who').textContent = user.name;
+    }
+
+    render();
+  </script>
+</body>
+</html>

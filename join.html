@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 | 펫블리 petbly</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 상단: 로고 + 유틸 메뉴 (메인과 동일) -->
+  <div class="top-bar">
+    <div class="inner">
+      <h1><a href="index.html" class="logo img-box">petbly 펫블리</a></h1>
+      <ul class="util-menu">
+        <li><a href="login.html">로그인</a></li>
+        <li><a href="join.html">회원가입</a></li>
+        <li><a href="guestbook.html">방명록</a></li>
+        <li><a href="cart.html">장바구니</a></li>
+        <li><a href="mypage.html">마이페이지</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 내비게이션 + 검색 (메인과 동일) -->
+  <nav class="gnb-wrap">
+    <div class="inner">
+      <ul class="gnb">
+        <li><a href="about.html">브랜드 소개</a></li>
+        <li><a href="dogshop.html">강아지 샵</a></li>
+        <li><a href="catshop.html">고양이 샵</a></li>
+        <li><a href="subscribe.html">정기배송</a></li>
+        <li><a href="review.html">상품 리뷰</a></li>
+        <li><a href="event.html">이벤트</a></li>
+        <li><a href="support.html">고객센터</a></li>
+      </ul>
+      <form class="search" onsubmit="event.preventDefault(); alert('검색 기능은 준비 중입니다.');">
+        <input type="text" placeholder="검색어를 입력하세요">
+        <button type="submit" aria-label="검색">🔍</button>
+      </form>
+    </div>
+  </nav>
+
+  <main class="inner">
+    <div class="page-title">
+      <h2>회원가입</h2>
+      <p>마이펫을 등록하면 우리 아이에게 맞는 상품을 추천해 드려요</p>
+    </div>
+
+    <form class="form-page wide" id="joinForm" novalidate>
+
+      <!-- 1. 약관 동의 -->
+      <h3 class="box-title">약관 동의</h3>
+      <div class="agree">
+        <label class="all"><input type="checkbox" id="agreeAll"> 전체 동의</label>
+        <label><input type="checkbox" class="agree-item" data-required="true"> [필수] 이용약관 동의</label>
+        <label><input type="checkbox" class="agree-item" data-required="true"> [필수] 개인정보 수집 및 이용 동의</label>
+        <label><input type="checkbox" class="agree-item"> [선택] 이벤트·혜택 알림 수신 동의</label>
+      </div>
+
+      <!-- 2. 가입 정보 -->
+      <h3 class="box-title">가입 정보 입력</h3>
+      <div class="field">
+        <label>아이디 <em>*</em></label>
+        <div class="with-btn">
+          <input type="text" id="userId" placeholder="영문, 숫자 4~12자" maxlength="12">
+          <button type="button" id="checkId">중복 확인</button>
+        </div>
+        <p class="hint" id="idHint"></p>
+      </div>
+      <div class="field">
+        <label>비밀번호 <em>*</em></label>
+        <input type="password" id="userPw" placeholder="영문, 숫자 포함 6자 이상">
+        <p class="hint" id="pwHint"></p>
+      </div>
+      <div class="field">
+        <label>비밀번호 확인 <em>*</em></label>
+        <input type="password" id="userPw2" placeholder="비밀번호를 한 번 더 입력하세요">
+        <p class="hint" id="pw2Hint"></p>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>이름 <em>*</em></label>
+          <input type="text" id="userName" placeholder="홍길동" maxlength="10">
+        </div>
+        <div class="field">
+          <label>휴대폰 번호</label>
+          <input type="tel" id="userPhone" placeholder="010-0000-0000" maxlength="13">
+        </div>
+      </div>
+      <div class="field">
+        <label>이메일 <em>*</em></label>
+        <input type="email" id="userEmail" placeholder="petbly@email.com">
+      </div>
+
+      <!-- 3. 마이펫 등록 (선택) -->
+      <h3 class="box-title">마이펫 등록 <small>선택 · 나중에 마이페이지에서도 등록할 수 있어요</small></h3>
+      <div class="field">
+        <label>반려동물 종류</label>
+        <div class="pet-type">
+          <label><input type="radio" name="petType" value="강아지"><span>🐶 강아지</span></label>
+          <label><input type="radio" name="petType" value="고양이"><span>🐱 고양이</span></label>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>이름</label>
+          <input type="text" id="petName" placeholder="초코" maxlength="10">
+        </div>
+        <div class="field">
+          <label>품종</label>
+          <input type="text" id="petBreed" placeholder="말티즈" maxlength="15">
+        </div>
+        <div class="field">
+          <label>나이 (살)</label>
+          <input type="number" id="petAge" placeholder="3" min="0" max="30">
+        </div>
+        <div class="field">
+          <label>체중 (kg)</label>
+          <input type="number" id="petWeight" placeholder="3.2" min="0" step="0.1">
+        </div>
+      </div>
+
+      <p class="form-error" id="error"></p>
+      <button type="submit" class="btn-full">가입하기</button>
+    </form>
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div>
+        <ul class="foot-menu">
+          <li><a href="support.html">공지사항</a></li>
+          <li><a href="support.html">자주 하는 질문</a></li>
+          <li><a href="support.html">1:1 문의</a></li>
+          <li><a href="about.html">함께하는 나눔</a></li>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+        </ul>
+        <p class="foot-info">
+          상호명 펫블리(petbly) · 대표 000 · 사업자등록번호 000-00-00000<br>
+          주소 00시 00구 00로 00 · 이메일 help@petbly.com<br>
+          © petbly. All rights reserved.
+        </p>
+      </div>
+      <div class="cs">
+        고객센터<strong>1588-0000</strong>평일 10:00 ~ 18:00 (점심 12:00 ~ 13:00)
+      </div>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script>
+    const $ = id => document.getElementById(id);
+    let idChecked = false;   // 아이디 중복 확인을 했는지
+
+    // 전체 동의
+    const items = document.querySelectorAll('.agree-item');
+    $('agreeAll').addEventListener('change', e => items.forEach(i => i.checked = e.target.checked));
+    items.forEach(i => i.addEventListener('change', () => {
+      $('agreeAll').checked = [...items].every(x => x.checked);
+    }));
+
+    function hint(id, text, ok) {
+      $(id).textContent = text;
+      $(id).className = 'hint ' + (text ? (ok ? 'ok' : 'bad') : '');
+    }
+
+    // 아이디 중복 확인
+    $('checkId').addEventListener('click', () => {
+      const id = $('userId').value.trim();
+      if (!/^[a-zA-Z0-9]{4,12}$/.test(id)) { idChecked = false; return hint('idHint', '아이디는 영문, 숫자 4~12자로 입력해 주세요.', false); }
+      const exists = Store.get('petbly_users', []).some(u => u.id === id);
+      idChecked = !exists;
+      hint('idHint', exists ? '이미 사용 중인 아이디예요.' : '사용할 수 있는 아이디예요.', !exists);
+    });
+    $('userId').addEventListener('input', () => { idChecked = false; hint('idHint', '', true); });
+
+    // 비밀번호 확인
+    function checkPw() {
+      const pw = $('userPw').value, pw2 = $('userPw2').value;
+      const good = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$/.test(pw);
+      hint('pwHint', pw ? (good ? '사용할 수 있는 비밀번호예요.' : '영문과 숫자를 포함해 6자 이상 입력해 주세요.') : '', good);
+      hint('pw2Hint', pw2 ? (pw === pw2 ? '비밀번호가 일치해요.' : '비밀번호가 일치하지 않아요.') : '', pw === pw2);
+      return good && pw === pw2;
+    }
+    $('userPw').addEventListener('input', checkPw);
+    $('userPw2').addEventListener('input', checkPw);
+
+    // 휴대폰 번호 자동 하이픈
+    $('userPhone').addEventListener('input', e => {
+      const n = e.target.value.replace(/\D/g, '').slice(0, 11);
+      e.target.value = n.length > 7 ? `${n.slice(0,3)}-${n.slice(3,7)}-${n.slice(7)}` : n.length > 3 ? `${n.slice(0,3)}-${n.slice(3)}` : n;
+    });
+
+    // 다시 입력하면 오류 문구 지우기
+    $('joinForm').addEventListener('input', () => $('error').textContent = '');
+    $('joinForm').addEventListener('change', () => $('error').textContent = '');
+
+    // 가입하기
+    $('joinForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const error = $('error');
+      const required = [...items].filter(i => i.dataset.required);
+
+      if (!required.every(i => i.checked)) return error.textContent = '필수 약관에 동의해 주세요.';
+      if (!idChecked) return error.textContent = '아이디 중복 확인을 해 주세요.';
+      if (!checkPw()) return error.textContent = '비밀번호를 확인해 주세요.';
+      if (!$('userName').value.trim()) return error.textContent = '이름을 입력해 주세요.';
+      if (!/^\S+@\S+\.\S+$/.test($('userEmail').value.trim())) return error.textContent = '이메일을 올바르게 입력해 주세요.';
+
+      const petType = document.querySelector('input[name=petType]:checked');
+      const pet = (petType && $('petName').value.trim()) ? {
+        type: petType.value,
+        name: $('petName').value.trim(),
+        breed: $('petBreed').value.trim(),
+        age: $('petAge').value,
+        weight: $('petWeight').value
+      } : null;
+
+      const users = Store.get('petbly_users', []);
+      users.push({
+        id: $('userId').value.trim(),
+        pw: $('userPw').value,
+        name: $('userName').value.trim(),
+        phone: $('userPhone').value,
+        email: $('userEmail').value.trim(),
+        pet: pet
+      });
+      Store.set('petbly_users', users);
+
+      alert($('userName').value.trim() + '님, 펫블리 회원가입이 완료됐어요!\n로그인 페이지로 이동할게요.');
+      location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

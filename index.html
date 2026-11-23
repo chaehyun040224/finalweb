@@ -63,16 +63,16 @@
       <div class="mypet-box">
         <div class="mypet-left">
           <div class="img-box">마이펫 사진</div>
-          <p>마이펫을 등록하면<br>우리 아이에게 맞는 상품을 추천해 드려요</p>
-          <a href="join.html" class="btn-main">마이펫 등록하기</a>
+          <p id="petText">마이펫을 등록하면<br>우리 아이에게 맞는 상품을 추천해 드려요</p>
+          <a href="join.html" class="btn-main" id="petBtn">마이펫 등록하기</a>
         </div>
         <div class="mypet-right">
-          <p class="guide">마이펫 등록 후 : 초코 (말티즈 · 8살 · 3.2kg) 에게 추천하는 상품</p>
+          <p class="guide" id="petGuide">마이펫 등록 후 : 초코 (말티즈 · 8살 · 3.2kg) 에게 추천하는 상품</p>
           <div class="grid-4">
-            <a href="detail.html" class="product"><div class="img-box">추천 상품</div><p class="name">시니어 소형견 사료 2kg</p><p class="price">32,000원</p></a>
-            <a href="detail.html" class="product"><div class="img-box">추천 상품</div><p class="name">관절 영양 간식</p><p class="price">15,900원</p></a>
-            <a href="detail.html" class="product"><div class="img-box">추천 상품</div><p class="name">저자극 배변패드 100매</p><p class="price">18,500원</p></a>
-            <a href="detail.html" class="product"><div class="img-box">추천 상품</div><p class="name">노령견 메모리폼 방석</p><p class="price">39,000원</p></a>
+            <div class="product" data-id="r1" data-name="시니어 소형견 사료 2kg" data-price="32000"><a href="detail.html"><div class="img-box">추천 상품</div><p class="name">시니어 소형견 사료 2kg</p></a><p class="price">32,000원</p><button class="cart-btn">장바구니 담기</button></div>
+            <div class="product" data-id="r2" data-name="관절 영양 간식" data-price="15900"><a href="detail.html"><div class="img-box">추천 상품</div><p class="name">관절 영양 간식</p></a><p class="price">15,900원</p><button class="cart-btn">장바구니 담기</button></div>
+            <div class="product" data-id="r3" data-name="저자극 배변패드 100매" data-price="18500"><a href="detail.html"><div class="img-box">추천 상품</div><p class="name">저자극 배변패드 100매</p></a><p class="price">18,500원</p><button class="cart-btn">장바구니 담기</button></div>
+            <div class="product" data-id="r4" data-name="노령견 메모리폼 방석" data-price="39000"><a href="detail.html"><div class="img-box">추천 상품</div><p class="name">노령견 메모리폼 방석</p></a><p class="price">39,000원</p><button class="cart-btn">장바구니 담기</button></div>
           </div>
         </div>
       </div>
@@ -85,11 +85,11 @@
         <a href="dogshop.html" class="more">더보기 +</a>
       </div>
       <div class="grid-5">
-        <a href="detail.html" class="product"><span class="rank">1</span><div class="img-box">상품 이미지</div><p class="name">그레인프리 강아지 사료 6kg</p><p class="price">54,000원</p><p class="star">★ 4.9 (리뷰 1,204)</p></a>
-        <a href="detail.html" class="product"><span class="rank">2</span><div class="img-box">상품 이미지</div><p class="name">벤토나이트 고양이 모래 10L</p><p class="price">12,900원</p><p class="star">★ 4.8 (리뷰 986)</p></a>
-        <a href="detail.html" class="product"><span class="rank">3</span><div class="img-box">상품 이미지</div><p class="name">대형 배변패드 100매</p><p class="price">19,800원</p><p class="star">★ 4.8 (리뷰 875)</p></a>
-        <a href="detail.html" class="product"><span class="rank">4</span><div class="img-box">상품 이미지</div><p class="name">츄르 참치맛 20개입</p><p class="price">11,500원</p><p class="star">★ 4.9 (리뷰 742)</p></a>
-        <a href="detail.html" class="product"><span class="rank">5</span><div class="img-box">상품 이미지</div><p class="name">원목 스크래쳐 캣타워</p><p class="price">89,000원</p><p class="star">★ 4.7 (리뷰 431)</p></a>
+        <div class="product" data-id="b1" data-name="그레인프리 강아지 사료 6kg" data-price="54000"><a href="detail.html"><span class="rank">1</span><div class="img-box">상품 이미지</div><p class="name">그레인프리 강아지 사료 6kg</p></a><p class="price">54,000원</p><p class="star">★ 4.9 (리뷰 1,204)</p><button class="cart-btn">장바구니 담기</button></div>
+        <div class="product" data-id="b2" data-name="벤토나이트 고양이 모래 10L" data-price="12900"><a href="detail.html"><span class="rank">2</span><div class="img-box">상품 이미지</div><p class="name">벤토나이트 고양이 모래 10L</p></a><p class="price">12,900원</p><p class="star">★ 4.8 (리뷰 986)</p><button class="cart-btn">장바구니 담기</button></div>
+        <div class="product" data-id="b3" data-name="대형 배변패드 100매" data-price="19800"><a href="detail.html"><span class="rank">3</span><div class="img-box">상품 이미지</div><p class="name">대형 배변패드 100매</p></a><p class="price">19,800원</p><p class="star">★ 4.8 (리뷰 875)</p><button class="cart-btn">장바구니 담기</button></div>
+        <div class="product" data-id="b4" data-name="츄르 참치맛 20개입" data-price="11500"><a href="detail.html"><span class="rank">4</span><div class="img-box">상품 이미지</div><p class="name">츄르 참치맛 20개입</p></a><p class="price">11,500원</p><p class="star">★ 4.9 (리뷰 742)</p><button class="cart-btn">장바구니 담기</button></div>
+        <div class="product" data-id="b5" data-name="원목 스크래쳐 캣타워" data-price="89000"><a href="detail.html"><span class="rank">5</span><div class="img-box">상품 이미지</div><p class="name">원목 스크래쳐 캣타워</p></a><p class="price">89,000원</p><p class="star">★ 4.7 (리뷰 431)</p><button class="cart-btn">장바구니 담기</button></div>
       </div>
     </section>
 
@@ -190,7 +190,30 @@
     </div>
   </footer>
 
+  <script src="common.js"></script>
   <script>
+    // ===== 장바구니 담기 버튼 =====
+    document.querySelectorAll('.product[data-id] .cart-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.product');
+        addToCart({ id: card.dataset.id, name: card.dataset.name, price: Number(card.dataset.price) });
+      });
+    });
+
+    // ===== 우리 아이 맞춤 추천 (로그인 상태에 따라) =====
+    const me = currentUser();
+    if (me && me.pet) {
+      const p = me.pet;
+      const info = [p.breed, p.age ? p.age + '살' : '', p.weight ? p.weight + 'kg' : ''].filter(Boolean).join(' · ');
+      document.getElementById('petText').textContent = p.name + ' (' + p.type + ')' + (info ? ' · ' + info : '');
+      document.getElementById('petGuide').textContent = p.name + '에게 추천하는 상품이에요';
+      const btn = document.getElementById('petBtn');
+      btn.textContent = '마이펫 정보 수정';
+      btn.href = 'mypage.html';
+    } else if (me) {
+      document.getElementById('petBtn').href = 'mypage.html';
+    }
+
     // ===== 메인 배너 슬라이드 =====
     const slides = document.querySelector('.slides');
     const count = document.querySelectorAll('.slide').length;
@@ -239,13 +262,20 @@
     const posts = JSON.parse(localStorage.getItem('petbly_guestbook') || '[]');
     const preview = document.getElementById('guestPreview');
 
+    // 이름 가리기: 오채현 → 오*현, 홍길 → 홍*, 남궁민수 → 남**수
+    function maskName(name) {
+      if (name.length <= 1) return name;
+      if (name.length === 2) return name[0] + '*';
+      return name[0] + '*'.repeat(name.length - 2) + name[name.length - 1];
+    }
+
     if (posts.length === 0) {
       preview.innerHTML = '<li class="empty">첫 번째 방명록을 남겨주세요!</li>';
     } else {
       posts.slice(0, 3).forEach(p => {
         const li = document.createElement('li');
         li.innerHTML = '<a href="guestbook.html"><p class="who"></p><p class="msg"></p></a>';
-        li.querySelector('.who').textContent = p.name;
+        li.querySelector('.who').textContent = maskName(p.name);
         const date = document.createElement('span');
         date.textContent = p.date;
         li.querySelector('.who').appendChild(date);

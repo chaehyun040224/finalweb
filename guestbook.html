@@ -89,6 +89,7 @@
     </div>
   </footer>
 
+  <script src="common.js"></script>
   <script>
     const KEY = 'petbly_guestbook';   // 브라우저에 저장되는 이름
     const form = document.getElementById('guestForm');
@@ -123,7 +124,7 @@
         li.innerHTML = `
           <div class="who"><div><b></b><span></span></div><button class="del">삭제</button></div>
           <p class="msg"></p>`;
-        li.querySelector('b').textContent = p.name;          // textContent: 입력한 글자를 그대로 표시 (보안)
+        li.querySelector('b').textContent = maskName(p.name);       // textContent: 입력한 글자를 그대로 표시 (보안)
         li.querySelector('span').textContent = p.date;
         li.querySelector('.msg').textContent = p.message;
         li.querySelector('.del').addEventListener('click', () => remove(p.id));
@@ -167,6 +168,13 @@
     }
 
     function showError(text) { errorBox.textContent = text; }
+
+    // 이름 가리기: 오채현 → 오*현, 홍길 → 홍*, 남궁민수 → 남**수
+    function maskName(name) {
+      if (name.length <= 1) return name;
+      if (name.length === 2) return name[0] + '*';
+      return name[0] + '*'.repeat(name.length - 2) + name[name.length - 1];
+    }
 
     // 글자 수 세기
     messageInput.addEventListener('input', () => {
